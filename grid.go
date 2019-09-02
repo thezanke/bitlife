@@ -54,19 +54,21 @@ func (g grid) tileAt(x, y int64) tile {
 func (g grid) countNeighbors(b bit, x, y int64) int {
 	neighbors := 0
 
+	var nX, nY int64
+
 	// top
-	neighbor, nX, nY := b.topNeighbor(), x, y
+	nY = y
 
 	if topEdges.contains(b) {
 		nY--
 	}
 
-	if g.tileAt(nX, nY).bitAlive(neighbor) {
+	if g.tileAt(x, nY).bitAlive(b.topNeighbor()) {
 		neighbors++
 	}
 
 	// top-right
-	neighbor, nX, nY = b.topNeighbor().rightNeighbor(), x, y
+	nX, nY = x, y
 
 	if topEdges.contains(b) {
 		nY--
@@ -76,23 +78,23 @@ func (g grid) countNeighbors(b bit, x, y int64) int {
 		nX++
 	}
 
-	if g.tileAt(nX, nY).bitAlive(neighbor) {
+	if g.tileAt(nX, nY).bitAlive(b.topNeighbor().rightNeighbor()) {
 		neighbors++
 	}
 
 	// right
-	neighbor, nX, nY = b.rightNeighbor(), x, y
+	nX = x
 
 	if rightEdges.contains(b) {
 		nX++
 	}
 
-	if g.tileAt(nX, nY).bitAlive(neighbor) {
+	if g.tileAt(nX, y).bitAlive(b.rightNeighbor()) {
 		neighbors++
 	}
 
 	// bottom-right
-	neighbor, nX, nY = b.bottomNeighbor().rightNeighbor(), x, y
+	nX, nY = x, y
 
 	if bottomEdges.contains(b) {
 		nY++
@@ -102,23 +104,23 @@ func (g grid) countNeighbors(b bit, x, y int64) int {
 		nX++
 	}
 
-	if g.tileAt(nX, nY).bitAlive(neighbor) {
+	if g.tileAt(nX, nY).bitAlive(b.bottomNeighbor().rightNeighbor()) {
 		neighbors++
 	}
 
 	// bottom
-	neighbor, nX, nY = b.bottomNeighbor(), x, y
+	nY = y
 
 	if bottomEdges.contains(b) {
 		nY++
 	}
 
-	if g.tileAt(nX, nY).bitAlive(neighbor) {
+	if g.tileAt(x, nY).bitAlive(b.bottomNeighbor()) {
 		neighbors++
 	}
 
 	// bottom-left
-	neighbor, nX, nY = b.bottomNeighbor().leftNeighbor(), x, y
+	nX, nY = x, y
 
 	if bottomEdges.contains(b) {
 		nY++
@@ -128,23 +130,23 @@ func (g grid) countNeighbors(b bit, x, y int64) int {
 		nX--
 	}
 
-	if g.tileAt(nX, nY).bitAlive(neighbor) {
+	if g.tileAt(nX, nY).bitAlive(b.bottomNeighbor().leftNeighbor()) {
 		neighbors++
 	}
 
 	// left
-	neighbor, nX, nY = b.leftNeighbor(), x, y
+	nX = x
 
 	if leftEdges.contains(b) {
 		nX--
 	}
 
-	if g.tileAt(nX, nY).bitAlive(neighbor) {
+	if g.tileAt(nX, y).bitAlive(b.leftNeighbor()) {
 		neighbors++
 	}
 
 	// top-left
-	neighbor, nX, nY = b.topNeighbor().leftNeighbor(), x, y
+	nX, nY = x, y
 
 	if topEdges.contains(b) {
 		nY--
@@ -154,7 +156,7 @@ func (g grid) countNeighbors(b bit, x, y int64) int {
 		nX--
 	}
 
-	if g.tileAt(nX, nY).bitAlive(neighbor) {
+	if g.tileAt(nX, nY).bitAlive(b.topNeighbor().leftNeighbor()) {
 		neighbors++
 	}
 
