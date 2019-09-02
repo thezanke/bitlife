@@ -35,10 +35,8 @@ func (game *gridgame) next() {
 func (game gridgame) start() {
 	loop(func() {
 		clear()
-
 		fmt.Println("Life.")
 		fmt.Println(game.grid)
-
 		game.next()
 	}, 15)
 }

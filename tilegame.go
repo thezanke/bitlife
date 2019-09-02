@@ -8,15 +8,7 @@ func (game *tilegame) next() {
 	nextTile := game.tile
 
 	eachBit(func(b bit) {
-		neighbors := 0
-
-		for _, neighbor := range b.neighbors() {
-			if game.tile.bitAlive(neighbor) {
-				neighbors++
-			}
-		}
-
-		alive := game.tile.bitAlive(b)
+		alive, neighbors := game.tile.bitAlive(b), game.tile.countNeighbors(b)
 		if alive && (neighbors < 2 || neighbors > 3) || !alive && neighbors == 3 {
 			nextTile ^= tile(b)
 		}
@@ -28,11 +20,9 @@ func (game *tilegame) next() {
 func (game tilegame) start() {
 	loop(func() {
 		clear()
-
 		fmt.Println("Life.")
 		fmt.Println(game.tile)
 		fmt.Println("uint64(", game.tile.value(), ")")
-
 		game.next()
 	}, 30)
 }
