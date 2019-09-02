@@ -1,0 +1,6 @@
+{
+  "ignore": ["*.vscode"],
+  "ext": "go",
+  "exec": "go run . || exit 1",
+  "signal": "SIGKILL"
+}
