@@ -168,8 +168,8 @@ func (g grid) String() string {
 
 	g.eachRow(func(r gridrow, _ int64) {
 		keys := r.keys()
-
 		states := make([]bitstates, len(keys))
+
 		for i, posX := range keys {
 			states[i] = r[posX].bitstates()
 		}
