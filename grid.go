@@ -4,9 +4,9 @@ import "strings"
 
 type grid map[int64]gridrow
 
-func (g *grid) keys() []int64 {
+func (g grid) keys() []int64 {
 	keys := []int64{}
-	for y := range *g {
+	for y := range g {
 		keys = append(keys, y)
 	}
 	sortKeys(keys)
@@ -19,7 +19,7 @@ func (g grid) eachRow(fn func(g gridrow, y int64)) {
 	}
 }
 
-func (g *grid) eachTile(fn func(t tile, x int64, y int64)) {
+func (g grid) eachTile(fn func(t tile, x int64, y int64)) {
 	g.eachRow(func(r gridrow, y int64) {
 		r.eachTile(func(t tile, x int64) {
 			fn(t, x, y)

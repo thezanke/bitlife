@@ -41,7 +41,7 @@ func (t tile) printDetails() {
 	fmt.Println(t)
 }
 
-func (t *tile) getNeighbors(b bit) []bit {
+func (t tile) getNeighbors(b bit) []bit {
 	return []bit{
 		b.topNeighbor(),
 		b.topNeighbor().rightNeighbor(),
@@ -54,7 +54,7 @@ func (t *tile) getNeighbors(b bit) []bit {
 	}
 }
 
-func (t *tile) countNeighbors(b bit) int {
+func (t tile) countNeighbors(b bit) int {
 	neighbors := 0
 	for _, neighbor := range t.getNeighbors(b) {
 		if t.bitAlive(neighbor) {

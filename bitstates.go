@@ -2,9 +2,9 @@ package main
 
 type bitstates []bool
 
-func (b bitstates) mapToString(f func(bool) string) []string {
-	sm := make([]string, len(b))
-	for i, v := range b {
+func (bs bitstates) mapToString(f func(bool) string) []string {
+	sm := make([]string, len(bs))
+	for i, v := range bs {
 		sm[i] = f(v)
 	}
 	return sm

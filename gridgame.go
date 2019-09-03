@@ -6,7 +6,7 @@ import (
 
 type gridgame struct{ grid grid }
 
-func (game *gridgame) nextTile(t tile, x, y int64) tile {
+func (game gridgame) nextTile(t tile, x, y int64) tile {
 	nextTile := t
 
 	eachBit(func(b bit) {

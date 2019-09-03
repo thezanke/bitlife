@@ -2,8 +2,8 @@ package main
 
 type gridrow map[int64]tile
 
-func (r *gridrow) keys() (keys []int64) {
-	for x := range *r {
+func (r gridrow) keys() (keys []int64) {
+	for x := range r {
 		keys = append(keys, x)
 	}
 	sortKeys(keys)
