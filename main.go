@@ -37,14 +37,6 @@ func sortKeys(keys []int64) {
 	sort.Slice(keys, func(i, j int) bool { return keys[i] < keys[j] })
 }
 
-func createGrid() grid {
-	return grid{
-		-1: gridrow{-1: 0, 0: 0, 1: 0},
-		0:  gridrow{-1: 0, 0: 0, 1: 0},
-		1:  gridrow{-1: 0, 0: 0, 1: 0},
-	}
-}
-
 func gliderGunSuicide() grid {
 	g := grid{
 		0: gridrow{},

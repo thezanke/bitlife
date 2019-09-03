@@ -164,14 +164,14 @@ func (g grid) countLivingNeighbors(b bit, x, y int64) int {
 }
 
 func (g grid) String() string {
-	gRowStrings := []string{}
+	rowStrings := []string{}
 
-	g.eachRow(func(r gridrow, _ int64) {
-		keys := r.keys()
+	g.eachRow(func(row gridrow, _ int64) {
+		keys := row.keys()
 		states := make([]bitstates, len(keys))
 
 		for i, posX := range keys {
-			states[i] = r[posX].bitstates()
+			states[i] = row[posX].bitstates()
 		}
 
 		lines := make([]string, 8)
@@ -181,11 +181,11 @@ func (g grid) String() string {
 			for _, s := range states {
 				line = append(line, strings.Join(s[8*i:8*i+8].mapToString(charMapper), " "))
 			}
-			lines[i] += strings.Join(line, "   ")
+			lines[i] += strings.Join(line, " ")
 		}
 
-		gRowStrings = append(gRowStrings, strings.Join(lines, "\n"))
+		rowStrings = append(rowStrings, strings.Join(lines, "\n"))
 	})
 
-	return strings.Join(gRowStrings, "\n\n")
+	return strings.Join(rowStrings, "\n")
 }
