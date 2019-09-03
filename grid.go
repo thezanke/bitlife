@@ -171,7 +171,7 @@ func (g grid) String() string {
 		states := make([]bitstates, len(keys))
 
 		for i, posX := range keys {
-			states[i] = row[posX].bitstates()
+			states[i] = row[posX].bitStates()
 		}
 
 		lines := make([]string, 8)

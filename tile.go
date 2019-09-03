@@ -11,7 +11,7 @@ func (t tile) bitAlive(b bit) bool {
 	return t&tile(b) > 0
 }
 
-func (t tile) bitstates() bitstates {
+func (t tile) bitStates() bitstates {
 	bitstates := []bool{}
 	eachBit(func(b bit) {
 		bitstates = append(bitstates, t.bitAlive(b))
@@ -20,7 +20,7 @@ func (t tile) bitstates() bitstates {
 }
 
 func (t tile) String() string {
-	states := t.bitstates()
+	states := t.bitStates()
 	rows := []string{}
 
 	for i := 0; i < len(states); i += 8 {
