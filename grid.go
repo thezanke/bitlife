@@ -28,30 +28,30 @@ func (g *grid) eachTile(fn func(t tile, x int64, y int64)) {
 }
 
 func (g grid) tileAt(x, y int64) tile {
-	if _, ok := g[y]; !ok {
+	row, exists := g[y]
+	if !exists {
 		keys := g.keys()
 		if y < keys[0] {
-			y = keys[len(keys)-1]
+			row = g[keys[len(keys)-1]]
 		} else if y > keys[len(keys)-1] {
-			y = keys[0]
+			row = g[keys[0]]
 		}
 	}
 
-	r := g[y]
-
-	if _, ok := r[x]; !ok {
-		keys := r.keys()
+	tile, exists := row[x]
+	if !exists {
+		keys := row.keys()
 		if x < keys[0] {
-			x = keys[len(keys)-1]
+			tile = row[keys[len(keys)-1]]
 		} else if x > keys[len(keys)-1] {
-			x = keys[0]
+			tile = row[keys[0]]
 		}
 	}
 
-	return r[x]
+	return tile
 }
 
-func (g grid) countNeighbors(b bit, x, y int64) int {
+func (g grid) countLivingNeighbors(b bit, x, y int64) int {
 	neighbors := 0
 
 	var nX, nY int64

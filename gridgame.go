@@ -10,7 +10,7 @@ func (game *gridgame) nextTile(t tile, x, y int64) tile {
 	nextTile := t
 
 	eachBit(func(b bit) {
-		neighbors := game.grid.countNeighbors(b, x, y)
+		neighbors := game.grid.countLivingNeighbors(b, x, y)
 		alive := t.bitAlive(b)
 		if alive && (neighbors < 2 || neighbors > 3) || !alive && neighbors == 3 {
 			nextTile ^= tile(b)
